@@ -5,7 +5,6 @@ const movieRoutes = require('./routes/movies');
 const cinemaRoutes = require('./routes/cinemas');
 const showRoutes = require('./routes/shows');
 const bookingRoutes = require('./routes/bookings');
-const diagnosticRoutes = require('./routes/diagnostics');
 
 const app = express();
 const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
@@ -21,7 +20,6 @@ app.use('/api/movies', movieRoutes);
 app.use('/api/cinemas', cinemaRoutes);
 app.use('/api/shows', showRoutes);
 app.use('/api/bookings', bookingRoutes);
-app.use('/api/diagnostics', diagnosticRoutes);
 
 app.get('/api/health', (_req, res) => {
   res.status(200).json({ success: true, data: { status: 'ok' } });
