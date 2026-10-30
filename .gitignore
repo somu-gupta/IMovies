@@ -1,0 +1,22 @@
+node_modules/
+client/node_modules/
+server/node_modules/
+dist/
+build/
+**/build/
+client/dist/
+client/build/
+server/build/
+.env
+.env.*
+!**/.env.example
+coverage/
+*.log
+npm-debug.log*
+.vercel/
+.vite/
+.cache/
+.DS_Store
+Thumbs.db
+# Legacy nested Vite starter; the canonical application lives in /client.
+/IMovies/
