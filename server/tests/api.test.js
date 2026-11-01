@@ -112,7 +112,7 @@ test('database configures custom DNS servers before connecting with Mongoose', a
   }
 });
 
-test('database DNS configuration uses public resolver fallbacks when DNS_SERVERS is unset', async (t) => {
+test('database DNS configuration leaves the operating system resolver unchanged when DNS_SERVERS is unset', async (t) => {
   const previousUri = process.env.MONGODB_URI;
   const previousDnsServers = process.env.DNS_SERVERS;
   const calls = [];
@@ -123,7 +123,7 @@ test('database DNS configuration uses public resolver fallbacks when DNS_SERVERS
   t.mock.method(mongoose, 'connect', async () => {});
   try {
     await connectDatabase();
-    assert.deepEqual(calls[0], ['1.1.1.1', '8.8.8.8']);
+    assert.deepEqual(calls, []);
   } finally {
     if (previousUri === undefined) delete process.env.MONGODB_URI;
     else process.env.MONGODB_URI = previousUri;
