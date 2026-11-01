@@ -1,6 +1,11 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { CATALOGUE_SEED_MARKER_ID, startServer } = require('../src/startup');
+const startup = require('../src/startup');
+const { CATALOGUE_SEED_MARKER_ID, startServer } = startup;
+
+test('CommonJS startup module exports the named function consumed by server.js', () => {
+  assert.equal(typeof startup.startServer, 'function');
+});
 
 function createHarness({ databaseName = 'imovies', marker = null } = {}) {
   const state = { marker, markerReads: 0, markerWrites: 0, markerWriteError: null, markerAcknowledged: true, connectCalls: 0, seedCalls: [], listenCalls: 0, logs: [], warnings: [], errors: [] };
